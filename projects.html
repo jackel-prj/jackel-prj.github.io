@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects | Jackel</title>
+  <meta name="description" content="Physics projects: simulations, lab work and data analysis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">jackel</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap block">
+    <h1 class="page-title">Projects</h1>
+    <p class="lede">Each project has its own write-up with the theory, method and results.</p>
+
+    <div class="key">
+      <span>Colour shows the type of project:</span>
+      <ul class="tags">
+        <li class="kind c-alpha">Experimental</li>
+        <li class="kind c-beta">Computational</li>
+        <li class="kind c-gamma">Theory</li>
+        <li class="kind c-delta">Data analysis</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <!--
+        TO ADD A PROJECT: copy one <li>...</li> block below, change the colour class
+        (c-alpha, c-beta, c-gamma or c-delta), the title, summary, tags and link.
+        Put the new write-up in its own .html file next to this one.
+      -->
+      <ul class="projects">
+
+        <li>
+          <a class="project c-beta" href="damped-oscillator.html">
+            <h3>Damped harmonic oscillator</h3>
+            <p>Derives the motion of a mass on a spring with drag, then checks the formula against a numerical solution. Agreement is better than 10<sup>-11</sup> m.</p>
+            <ul class="tags">
+              <li class="kind">Computational</li>
+              <li>Python</li>
+              <li>SciPy</li>
+              <li>Matplotlib</li>
+            </ul>
+          </a>
+        </li>
+
+        <!-- PLACEHOLDERS: replace these two with real projects, or delete them -->
+        <li>
+          <div class="project c-alpha is-placeholder">
+            <h3>Your next project</h3>
+            <p>Replace this with one or two sentences: what you set out to do, and what you found.</p>
+            <ul class="tags">
+              <li class="kind">Experimental</li>
+              <li>Tools used</li>
+            </ul>
+          </div>
+        </li>
+
+        <li>
+          <div class="project c-delta is-placeholder">
+            <h3>Another project</h3>
+            <p>Replace this with a short summary and link it to its own write-up page.</p>
+            <ul class="tags">
+              <li class="kind">Data analysis</li>
+              <li>Tools used</li>
+            </ul>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Plain HTML, hosted on GitHub Pages.</span>
+    <a href="https://github.com/jackel-prj">github.com/jackel-prj</a>
+  </div>
+</footer>
+
+</body>
+</html>

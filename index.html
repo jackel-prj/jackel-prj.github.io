@@ -1,26 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Jackel | Physics Portfolio</title>
-  <style>
-    body { font-family: system-ui, sans-serif; max-width: 700px;
-           margin: 3rem auto; padding: 0 1rem; line-height: 1.6; }
-    h1 { margin-bottom: 0; }
-    .card { border: 1px solid #ccc; border-radius: 8px;
-            padding: 1rem; margin: 1rem 0; }
-  </style>
+  <title>Jackel | Physics portfolio</title>
+  <meta name="description" content="Physics projects and coursework from a Northumbria University student.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Jackel</h1>
-  <p>Second-year Physics student at Northumbria University.</p>
 
-  <h2>Projects</h2>
-  <div class="card">
-    <h3>Project title</h3>
-    <p>One or two sentences on what you did and which tools you used.</p>
-    <a href="#">View on GitHub</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">jackel</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About</a>
+    </nav>
   </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <div class="hero">
+      <h1>Jackel</h1>
+      <!-- EDIT: one or two sentences about you -->
+      <p>Second-year physics student at Northumbria University. Simulations, lab work and data analysis, with the working shown.</p>
+
+      <div class="spectrum">
+        <div class="spectrum-strip" role="group" aria-label="Visible hydrogen emission lines, 400 to 700 nanometres">
+          <!-- left = (wavelength - 400) / 300 * 100 % -->
+          <button class="spectrum-line c-delta" style="left:3.4%"   data-name="H&delta;" data-wl="410.2" data-n="6" aria-pressed="false" aria-label="H delta, 410.2 nanometres"></button>
+          <button class="spectrum-line c-gamma" style="left:11.33%" data-name="H&gamma;" data-wl="434.0" data-n="5" aria-pressed="false" aria-label="H gamma, 434.0 nanometres"></button>
+          <button class="spectrum-line c-beta"  style="left:28.7%"  data-name="H&beta;"  data-wl="486.1" data-n="4" aria-pressed="false" aria-label="H beta, 486.1 nanometres"></button>
+          <button class="spectrum-line c-alpha" style="left:85.43%" data-name="H&alpha;" data-wl="656.3" data-n="3" aria-pressed="false" aria-label="H alpha, 656.3 nanometres"></button>
+        </div>
+        <div class="spectrum-scale" aria-hidden="true">
+          <span style="left:0%">400</span>
+          <span style="left:16.667%">450</span>
+          <span style="left:33.333%">500</span>
+          <span style="left:50%">550</span>
+          <span style="left:66.667%">600</span>
+          <span style="left:83.333%">650</span>
+          <span style="left:100%">700 nm</span>
+        </div>
+        <p class="readout" id="readout" aria-live="polite">Visible emission lines of hydrogen, the Balmer series. Select a line to see which transition makes it.</p>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Featured project</h2>
+      <ul class="projects">
+        <li>
+          <a class="project c-beta" href="damped-oscillator.html">
+            <h3>Damped harmonic oscillator</h3>
+            <p>Derives the motion of a mass on a spring with drag, then checks the formula against a numerical solution. Agreement is better than 10<sup>-11</sup> m.</p>
+            <ul class="tags">
+              <li class="kind">Computational</li>
+              <li>Python</li>
+              <li>SciPy</li>
+              <li>Matplotlib</li>
+            </ul>
+          </a>
+        </li>
+      </ul>
+      <p class="more"><a href="projects.html">See all projects</a></p>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Plain HTML, hosted on GitHub Pages.</span>
+    <a href="https://github.com/jackel-prj">github.com/jackel-prj</a>
+  </div>
+</footer>
+
+<script>
+  // Show which transition produces each line when it is hovered, focused or clicked.
+  (function () {
+    var readout = document.getElementById("readout");
+    var lines = document.querySelectorAll(".spectrum-line");
+    var defaultText = readout.textContent;
+
+    function show(btn) {
+      readout.textContent = "";
+      var strong = document.createElement("strong");
+      strong.innerHTML = btn.dataset.name + ", " + btn.dataset.wl + " nm";
+      readout.appendChild(strong);
+      readout.appendChild(document.createTextNode(
+        ". The electron drops from n = " + btn.dataset.n + " to n = 2."
+      ));
+    }
+
+    lines.forEach(function (btn) {
+      btn.addEventListener("mouseenter", function () { show(btn); });
+      btn.addEventListener("focus", function () { show(btn); });
+      btn.addEventListener("click", function () {
+        lines.forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+        btn.setAttribute("aria-pressed", "true");
+        show(btn);
+      });
+    });
+
+    document.querySelector(".spectrum-strip").addEventListener("mouseleave", function () {
+      var pressed = document.querySelector('.spectrum-line[aria-pressed="true"]');
+      if (pressed) { show(pressed); } else { readout.textContent = defaultText; }
+    });
+  })();
+</script>
+
 </body>
 </html>
